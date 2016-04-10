@@ -1,0 +1,13 @@
+{
+  "name": "twitterv1.0",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "*",
+    "express": "3.2.6",
+    "pbkdf2-sha256": "^1.1.1"
+  }
+}

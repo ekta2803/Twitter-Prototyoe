@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://twitter.com/signup -->
+<html data-scribe-reduced-action-queue="true" lang="en" ng-app="search">
+<!--<![endif]-->
+<head>
+        
+    <link href="stylesheets/style.css" rel="stylesheet">    
+    <link href="stylesheets/css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    <script src="angularjs/search.js"></script>
+    
+    <title>Sign up for Twitter</title>
+    
+    <link href="https://abs.twimg.com/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body style="background-color: #EFEFEF;" ng-controller="searchController">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav nav-tabs top-nav-home nav-custom">
+                 <li style="padding-left: 100px">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Notifications</a>
+                </li>
+                <li>
+                    <a href="#">Messages</a>
+                </li>
+                <li class="pull-right" style="padding-right: 100px;">
+                    <button type="button" class="btn btn-primary nav-height btn-default">
+                        Twitter
+                    </button>
+                </li>
+                <li class="width-setting pull-right">
+                    <img src="https://pbs.twimg.com/profile_images/694244753454399488/OmSwmo-T_normal.jpg" class="size32-cust" style="width: 46px;height: 37px; padding-right: 10px; margin-top: 5px">  
+                </li>
+                 <li class="pull-right" style="padding-right:30px">
+               <form class="navbar-form" role="search">
+                <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search" name="q" ng-model="searchBox">
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" ng-click="searchKey()"><i class="glyphicon glyphicon-search" ></i></button>
+                  </div>
+              </div>
+             </form>
+                
+          
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

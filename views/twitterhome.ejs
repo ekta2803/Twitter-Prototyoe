@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://twitter.com/signup -->
+<html data-scribe-reduced-action-queue="true" lang="en" >
+<!--<![endif]-->
+<head>
+        
+    <link href="stylesheets/style.css" rel="stylesheet">    
+    <link href="stylesheets/css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    <script src="angularjs/homepage.js"></script>
+    
+    <title>Twitter</title>
+    
+    <link href="https://abs.twimg.com/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <style type="text/css">
+    #tweet-div:hover{
+        background-color: #f2f2f2;
+        border:solid;
+        border-color: #8c8c8c;
+        border-width: 1px;
+
+    }
+    </style>
+</head>
+<body style="background-color: #EFEFEF;" ng-app="home" ng-controller="homeController">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav nav-tabs top-nav-home nav-custom">
+                 <li style="padding-left: 100px">
+                    <a href="/homepage">Home</a>
+                </li>
+                <li>
+                    <a href="#">Notifications</a>
+                </li>
+                <li>
+                    <a href="#">Messages</a>
+                </li>
+                <li>
+                <div style="text-align: center"> 
+                    <img src="images/icon.png" style="margin-top: 2px; margin-left:250px" class="tweet-img">
+                </div>
+                </li>
+
+                 <li class="pull-right" style="padding-right: 100px; margin-top: 7px">
+                    <button type="button" class="btn btn-primary nav-height btn-default" ng-click="logout()">
+                        Logout
+                    </button>
+                </li>
+                <li class="width-setting pull-right" style="margin-right: 15px;margin-top: 2px">
+                    <img src="images/DP/{{user_id}}.jpg" class="size32-cust" style="width: 46px;height: 37px; padding-right: 10px; margin-top: 5px">  
+                </li>
+                <li class="pull-right" style="padding-right:30px">
+                <form class="navbar-form" role="search">
+                <div class="input-group" style="margin-bottom: 10px">
+                      <input type="text" class="form-control" placeholder="Search" name="search" ng-model="searchBox">
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" ng-click="searchKey()"><span class="glyphicon glyphicon-search"></span></button>
+                  </div>
+              </div>
+             </form>
+                    
+                  </li>
+            
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3" ng-controller="profileController">
+                    <div class="home-profile-panel" style="margin-left: 100px">
+                        <div class="profile-block-upper"></div>
+                        <div class="profile-block-lower"></div>
+                        <div class="profile-pic-home"><img class="profile-pic-home-img" src="images/DP/{{user_id}}.jpg"></div><br>
+                         <div class="profile-details-home" ><a href="/{{username}}"><strong class="profile-block-name">{{fullname}}</strong></a><br>
+                         <span class="profile-block-handle"><a href="/{{username}}">@{{username}}</a></span></div>
+                          <div class="row">
+                                <div class="col-md-4 home-stats"  style="margin-left: 10px;">
+                                   <a href=""> <span class="stats-header">TWEETS</span><br><span class="stats-counts">11</span></a>
+                                </div>
+                                <div class="col-md-4 home-stats" style="margin-left: -25px;">
+                                    <a href=""><span class="stats-header">FOLLOWING</span><br><span class="stats-counts">{{followingCount}}</span></a>
+                                </div>
+                                <div class="col-md-4 home-stats" style="margin-left: -10px;">
+                                   <a href=""> <span class="stats-header">FOLLOWERS</span><br><span class="stats-counts">{{followCount}}</span></a>
+                                </div>
+                                
+                            </div>
+                    </div>
+                </div>
+       
+        
+                <div class="col-md-5 nopadding" ng-controller="tweetController">
+                    <div class="home-feeds-panel">
+                         <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-1">
+                                <img class="img-tweet-box" src="images/DP/{{user_id}}.jpg">
+                                </div>
+                                <div class="col-md-10 nopadding">
+                                <textarea type="textarea" rows="{{textRow}}" class="form-control form-control-tweet-box tweet-box-big" placeholder="What's happening?" ng-focus="showTextArea()" ng-blur="hideTextArea()" ng-model="tweet"></textarea>
+                                <button class="btn btn-primary btn-tweet-btn pull-right" ng-hide="hideButton" ng-click="tweetData()" style="margin-top: 10px"><!-- <img src="images/tweet-btn-img.png"> -->Tweet</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-newtweets-panel">
+                         
+                        </div>
+                        <div class="home-tweet" ng-repeat="i in tweetList" id="tweet-div" ng-click="tweetDetails()">
+                            <div style="border-color: #f5f8f" >
+                                <div class="media">
+                                    <a href="#" class="pull-left"><img alt="No DP" src="images/DP/{{i.user_id}}.jpg" class="tweet-img" /></a>
+                                    <div class="media-body" > 
+                                        <h4 class="media-heading">
+                                        <a href="/{{i.username}}"> {{i.full_name}}</a> </h4><a href=""> <h6>@{{i.username}}</h6></a>
+                                        <span>{{i.TWEET_DESCRIPTION}}</span>
+                   
+                                    </div>
+
+                                    <div>
+                                        <div class="gr-textarea-btn gr-textarea-btn_checking">
+                                            <div class="gr-textarea-btn_status">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+            <div class="btn-group" style="margin-top: 30px">
+                 
+                <a id="modal-340774" href="#modal-container-340774" role="button" class="btn" data-toggle="modal">
+                     <span class="glyphicon glyphicon-share-alt" style="padding-right: 30px"></span>
+                  </a>
+                <a>
+                    <span class="glyphicon glyphicon-retweet btn" id="modal-549583" href="#modal-container-549583" role="button" data-toggle="modal" ng-click="setRetweetContent(i)" ></span>
+                </a>
+                <a href="#">
+                     <span class="glyphicon glyphicon-heart" style="padding-left: 30px"></span>
+                  </a>
+                <a href="" ng-click="delete(i)">
+                      <span class="glyphicon glyphicon-remove" style="padding-left: 30px"></span>
+                </a>
+            </div>
+<hr/>
+            <div class="modal fade" id="modal-container-549583" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                ×
+                                                            </button>
+                                                            <h4 class="modal-title" id="myModalLabel">
+                                                                Retweet this to your followers?
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body row">
+                                                            <div>
+                                                                <textarea type="textarea" rows="{{twtBoxRows}}" class="form-control form-control-retweet-box tweet-box-big" placeholder="Add your comment." ng-focus="twtBoxFocus()" ng-blur="twtBoxBlur()" ng-model="retwtBoxContent" style="width: 585px; padding-left: 10px"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="media">
+                                                                <a class="pull-left" href="#"><img class="tweet-img" alt="Bootstrap Media Preview" class="media-object" 
+                                                                    src="https://pbs.twimg.com/profile_images/694244753454399488/OmSwmo-T_normal.jpg"></a>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">{{retweet.full_name}}</h4><h6 style="color: #FB8790;">{{retweet.username}}</h6>
+                                                                        {{retweet.TWEET_DESCRIPTION}}
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-primary" ng-click="sendRetweet(retweet)" data-dismiss="modal">
+                                                                Retweet
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+            </div>
+
+
+
+             </div>
+            </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-controller="followController">
+
+                    <div class="home-profile-panel" style="height: 300px">
+                        <h4>&nbsp;Who to follow?</h4>
+                        <div class="row" ng-repeat="i in followList">
+                            <div class="col-md-2">
+                                <div style="padding: 10px; margin-left: 10px"><img src="images/default_avatar.png"></div>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="padding: 10px;">
+                                     <a href={{i.username}}><strong style="margin-left: 10px">{{i.full_name}}</strong></a><br>
+                                    <a href="{{i.username}}"><strong style="margin-left: 10px">{{i.username}}</strong>
+                                    <br>
+                                    <button class="btn btn-primary btn-xs" ng-click="followUser(i)" ng-show="i.showButton" style="margin-left: 10px">Follow</button>
+                                    <button class="btn btn-primary btn-xs" ng-click="unfollowUser(i)" ng-hide="i.showButton" style="margin-left: 10px">Unfollow</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                  </div>
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="stylesheets/js/bootstrap.min.js"></script>
+</body>
+</html>

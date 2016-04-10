@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://twitter.com/signup -->
+<html data-scribe-reduced-action-queue="true" lang="en" ng-app="profile">
+<!--<![endif]-->
+<head>
+        
+    <link href="stylesheets/style.css" rel="stylesheet">    
+    <link href="stylesheets/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    
+    <script src="angularjs/profile.js"></script>
+  
+    <title>Twitter</title>
+    
+    <link href="https://abs.twimg.com/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <script>
+
+
+                      app.value("username",'<%= username%>');
+                      app.value("user_id",'<%= user_id%>');    
+                      app.value("fullname",'<%= fullname%>');
+                      app.value("city", '<%= city %>');
+                      app.value("dob",'<%= dob%>');
+                      app.value("joinedon",'<%= joinedon%>');
+
+    </script>
+</head>
+<body style="background-color: #EFEFEF;" ng-controller="profileDetailsController">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="nav nav-tabs top-nav-home nav-custom">
+                 <li style="padding-left: 100px">
+                    <a href="/homepage">Home</a>
+                  </li>
+                  <li>
+                    <a href="#">Notifications</a>
+                  </li>
+                  <li>
+                    <a href="#">Messages</a>
+                  </li>
+
+                   <li>
+                <div style="text-align: center"> 
+                    <img src="images/icon.png" style="margin-top: 2px; margin-left:280px" class="tweet-img">
+                </div>
+                </li>
+
+                  <li class="pull-right" style="padding-right: 100px; margin-top: 7px">
+                    <button type="button" class="btn btn-primary nav-height btn-default" ng-click="logout()">
+                        Logout
+                    </button>
+                  </li>
+                  <li class="width-setting pull-right" style="margin-right: 10px;margin-top: 7px">
+                    <img src="images/DP/{{user_id}}.jpg"class="img-profile-setting-home">  
+                  </li>
+                  <li class="pull-right" style="padding-right:30px">
+                <form class="navbar-form" role="search">
+                <div class="input-group" style="margin-bottom: 10px">
+                      <input type="text" class="form-control" placeholder="Search" name="search" ng-model="searchBox">
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" ng-click="searchKey()"><span class="glyphicon glyphicon-search"></span></button>
+                  </div>
+              </div>
+             </form>
+                    
+                  </li>
+            </div>
+        </div>
+    </div>
+
+   <div class="container" ng-hide="showSearch">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav nav-tabs top-nav-home nav-custom" style="background-color: #666666;">
+                <h2 style="text-align: center; color:#ffffff; font-style: normal;"><span>{{searchBox}}</span></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+        
+                 <div class="col-md-3">
+                    
+                </div>
+
+
+                <div class="col-md-6 nopadding" ng-controller="profileDetailsController">
+                    <div class="home-feeds-panel">
+                     
+                        <div class="profile-tweets">
+                            <div class="home-tweet" ng-repeat="i in searchList">
+                                <a class="pull-left" href="#"><img class="tweet-img" alt="Bootstrap Media Preview" class="profile-profile-pic-img" 
+                                src="images/DP/{{user_id}}.jpg"></a>
+                                <div class="media-body">
+
+                                    <h4 class="media-heading" style="margin-left: 8px"><a href="/{{i.username}}">{{i.full_name}}</a></h4> 
+                                    <a href="/{{i.username}}"> <h6 style="margin-left: 8px">@{{i.username}}</h6></a>
+
+                                   <span style="margin-left: 8px"> {{i.tweet_description}}</span>
+                                    <div class="row">
+                                        <div class="btn-group" style="margin-top: 30px">
+                                            <a href="#">
+                                               <span class="glyphicon glyphicon-share-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-retweet"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-heart" style="padding-left: 30px"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-remove" style="padding-left: 30px"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                 <div class="col-md-3" ng-controller="followController">
+
+                   
+                </div>
+           </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+          <div class="profile-cover-pic" ng-hide="hideCoverPicDiv">
+            
+          </div>
+              <div class="col-md-12 nopadding" ng-hide="hideNavDiv">
+                <ul class="nav nav-tabs profile-nav" style="height: 60px">
+                   
+                    <li >
+                        <a href="#">Tweets</a>
+                    </li>
+                    <li>
+                        <a id="modal-6761266" href="#modal-container-6761266" role="button" class="btn" data-toggle="modal">Following</a>
+                    </li>
+                    <li class="">
+                         <a id="modal-676066" href="#modal-container-676066" role="button" class="btn" data-toggle="modal">Followers</a>
+                   
+                    </li>
+                    <li class="pull-right" ng-hide="hideEditbtn">
+
+                    <button href="#modal-container-169812" class="btn btn-default pull-right" data-toggle="modal" style="margin-top: 10px">Edit Profile</button> 
+
+                    </li>
+                </ul>
+            </div>
+  </div>
+
+
+   <div class="container" ng-hide="mainDiv">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+        
+                 <div class="col-md-3">
+                    <div class="profile-profile-pic">
+                        <img src="images/DP/{{user_id}}.jpg" class="profile-profile-pic-img">
+                    </div>
+                    <div class="profile-description">
+                    <div class="row">
+                       <h3> <span class="profile-fullname"><a href="">{{fullname}}</a></span></h3>
+                    </div>
+                    <div class="row">
+                        <span class="profile-handle"><a href="">@{{username}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="profile-about-me"></span>
+                    </div>
+                   
+                    <div class="row" ng-hide="hideCity">
+                        <span class="profile-city"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;{{city}}</span>
+                    </div>
+                   
+                    <div class="row">
+                        <span class="profile-joined-on"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Joined {{joinedon}}</span>
+                    </div>
+                    <div class="row" ng-hide="hideDob">
+                        <span class="profile-dob"><span class="glyphicon glyphicon-tint"></span>&nbsp;{{dob}}</span>
+                    </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 nopadding" ng-controller="tweetControllerProfile">
+                    <div class="home-feeds-panel">
+                        <div class="profile-tweets">
+                            <div class="home-tweet" ng-repeat="i in tweetList">
+                            
+                                <a class="pull-left" href="#"><img class="tweet-img" alt="Bootstrap Media Preview" class="media-object" 
+                                src="images/DP/{{user_id}}.jpg"></a>
+                                <div class="media-body">
+
+                                    <h4 class="media-heading" style="margin-left: 8px"><a href="/{{i.username}}">{{fullname}}</a></h4> 
+                                    <a href=""> <h6 style="margin-left: 8px">@{{username}}</h6></a>
+
+                                   <span style="margin-left: 8px"> {{i.TWEET_DESCRIPTION}}</span>
+                                    <div class="row">
+                                        <div class="btn-group" style="margin-top: 30px">
+                                            <a href="#">
+                                               <span class="glyphicon glyphicon-share-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-retweet"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-heart" style="padding-left: 30px"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-remove" style="padding-left: 30px"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                          
+
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
+                 <div class="col-md-3" ng-controller="followController">
+
+                    <div class="home-profile-panel" style="height: 300px">
+                        <h4>&nbsp;Who to follow?</h4>
+                        <div class="row" ng-repeat="i in followList">
+                            <div class="col-md-2">
+                                <div style="padding: 10px; margin-left: 10px"><img alt = "No DP"src="images/default_avatar.png" class="tweet-img"></div>
+                            </div>
+                            <div class="col-md-10">
+                                <div style="padding: 10px;">
+                                     <a href="{{i.username}}"><strong style="margin-left: 20px">{{i.full_name}}</strong></a><br>
+                                    <a href="{{i.username}}"><strong style="margin-left: 20px">{{i.username}}</strong></a>
+                                    <br>
+                                    <button class="btn btn-primary btn-xs" ng-click="followUser(i)" ng-show="i.showButton" style="margin-left: 20px">Follow</button>
+                                    <button class="btn btn-primary btn-xs" ng-click="unfollowUser(i)" ng-hide="i.showButton" style="margin-left: 20px">Unfollow</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<!--Modal for edit profile -->
+<div class="container-fluid" ng-controller="updateProfileController">
+    <div class="row">
+        <div class="col-md-12">           
+           <div class="modal fade" id="modal-container-169812" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            X
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Edit your profile.
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                            <div class="col-sm-4">
+                                <img src="https://pbs.twimg.com/profile_images/694244753454399488/OmSwmo-T_normal.jpg" class="change-profile-pic-img pull-right">
+                            </div>
+                            <div class="col-sm-6">
+                                <input id="myInput" type="file" style="visibility:hidden" />
+                                <button class="btn btn-default btn-sm" onclick="$('#myInput').click();">Change Profile Pic</button>
+                            </div> 
+                            </div>
+                        
+                            <div class="form-group">
+
+                                <label for="city" class="col-sm-4 control-label">
+                                    City
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" ng-model="city"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="email" class="col-sm-4 control-label">
+                                    Email Id
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" ng-model="emailid"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="city" class="col-sm-4 control-label">
+                                    Phone No
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" ng-model="phoneno" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="city" class="col-sm-4 control-label">
+                                    Date of Birth
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control" value="" ng-model="dobshow" />
+                                </div>
+                            </div> 
+                            </form>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button> 
+                        <button type="button" class="btn btn-primary" ng-click="saveProfileChanges()" data-dismiss="modal">
+                            Save Changes
+                        </button>
+                    
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+<!--Modal for followers -->
+<div class="modal fade" id="modal-container-676066" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="followerControllers">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+               
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+               X
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+               Followers
+              </h4>
+            </div>
+            <div class="modal-body">
+            <div class="form-group" style="height: 50px" ng-repeat = "list in followerList">
+                   <div class="col-sm-1">
+                       <img src="https://pbs.twimg.com/profile_images/694244753454399488/OmSwmo-T_normal.jpg" class="size32-cust" style="width: 46px;height: 37px; padding-right: 10px; margin-top: 5px"> 
+                  </div>
+                  <div class="col-sm-4">
+                      <a href=""> {{list.full_name}} </a> <br>
+                      <a href="">@{{list.username}}</a>         
+                  </div>
+                  <div class="col-sm-4" style="margin-bottom: 17px">
+                  <a href="/search"></a>
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Follow</button> 
+                  </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+
+
+<!--Modal for following -->
+<div class="modal fade" id="modal-container-6761266" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="followingControllers">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+               
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+               X
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+               Following
+              </h4>
+            </div>
+            <div class="modal-body">
+            <div class="form-group" style="height: 50px" ng-repeat = "list in followingList">
+                   <div class="col-sm-1">
+                       <img src="https://pbs.twimg.com/profile_images/694244753454399488/OmSwmo-T_normal.jpg" class="size32-cust" style="width: 46px;height: 37px; padding-right: 10px; margin-top: 5px"> 
+                  </div>
+                  <div class="col-sm-4">
+                      <a href=""> {{list.full_name}} </a> <br>
+                      <a href="">@{{list.username}}</a>         
+                  </div>
+                  <div class="col-sm-4" style="margin-bottom: 17px">
+                         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-hide="hideFollowing" ng-mouseenter="hideBtns(i)">Following</button> 
+                          <button type="button" class="btn btn-danger" data-dismiss="modal" ng-show="hideFollowing">Unfollow</button> 
+                  </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</body>
+</html>
